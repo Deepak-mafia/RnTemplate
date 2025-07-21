@@ -1,28 +1,40 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useEffect, useState } from 'react';
+import AppNavigation from './src/navigation';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import i18n, { changeLanguage } from './src/i18n';
+import STORAGE from './src/services/storage';
+import { ThemeProvider } from './src/theme/ThemeContext';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+export default function App() {
+  const [isReady, setIsReady] = useState(false);
+  const [language, setLanguage] = useState(i18n.language);
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  useEffect(() => {
+    const loadLanguage = async () => {
+      const savedLang = STORAGE.getString('appLanguage');
+      if (savedLang) {
+        await changeLanguage(savedLang);
+        setLanguage(savedLang);
+      }
+      setIsReady(true);
+    };
+    loadLanguage();
+
+    // Listen for language changes
+    const onLanguageChanged = (lng: string) => setLanguage(lng);
+    i18n.on('languageChanged', onLanguageChanged);
+    return () => {
+      i18n.off('languageChanged', onLanguageChanged);
+    };
+  }, []);
+
+  if (!isReady) return null;
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <ThemeProvider>
+      <SafeAreaProvider>
+        <AppNavigation />
+      </SafeAreaProvider>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;

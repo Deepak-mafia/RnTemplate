@@ -1,3 +1,6 @@
 {
+  "compilerOptions": {
+    "types": ["nativewind/types"]
+  },
   "extends": "@react-native/typescript-config"
 }

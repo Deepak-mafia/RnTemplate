@@ -1,0 +1,20 @@
+{
+  "welcome": "स्वागत है",
+  "home": {
+    "greeting": "नमस्ते, {{name}}!"
+  },
+  "tab": {
+    "home": "होम",
+    "search": "खोजें",
+    "notifications": "सूचनाएं",
+    "profile": "प्रोफ़ाइल"
+  },
+  "settings": {
+    "title": "सेटिंग्स स्क्रीन",
+    "language": "भाषा",
+    "chooseLanguage": "भाषा चुनें"
+  },
+  "common": {
+    "cancel": "रद्द करें"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "welcome": "Welcome",
+  "home": {
+    "greeting": "Hello, {{name}}!"
+  },
+  "tab": {
+    "home": "Home",
+    "search": "Search",
+    "notifications": "Notifications",
+    "profile": "Profile"
+  },
+  "settings": {
+    "title": "Settings Screen",
+    "language": "Language",
+    "chooseLanguage": "Choose Language"
+  },
+  "common": {
+    "cancel": "Cancel"
+  }
+}
